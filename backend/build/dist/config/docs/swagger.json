@@ -1,0 +1,494 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Portal Ilha Conectada",
+        "version": "1.0.0",
+        "description": "API do Portal Ilha Conectada. Atualmente está rodando em desenvolvimento"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users/createUser": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Cria um novo usuário",
+                "description": "Cria um novo usuário com os dados fornecidos no corpo da requisição. Retorna o usuário criado ou um erro em caso de falha.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/createUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Autentica um usuário",
+                "description": "Autentica um usuário com as credenciais fornecidas no corpo da requisição. Retorna um token de acesso em caso de sucesso ou um erro de autenticação.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/deleteUser/{id}": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Exclui um usuário pelo ID",
+                "description": "Exclui um usuário específico com base no ID fornecido na URL. Retorna uma mensagem de sucesso ou um erro se o usuário não for encontrado.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/user/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Busca um usuário por id",
+                "description": "Busca um usuário com base no ID fornecido pela URL",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Atualiza um usuário pelo ID",
+                "description": "Atualiza os dados de um usuário específico com base no ID fornecido na URL e os dados fornecidos no corpo da requisição. Retorna o usuário atualizado ou um erro em caso de falha.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "password": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/getAll": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Lista todos os usuários",
+                "description": "Retorna uma lista de todos os usuários cadastrados no sistema.",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/estagiarios/": {
+            "get": {
+                "tags": [
+                    "Estagiários"
+                ],
+                "summary": "Lista todos os estagiários",
+                "description": "Retorna uma lista de todos os estagiários que foram cadastrados no sistema.",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Estagiários"
+                ],
+                "summary": "Cria um novo estagiário",
+                "description": "Cria um novo estagiário com os dados fornecidos no corpo da requisição. Retorna a confirmação de criado ou um erro em caso de falha.",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/createEstagiario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/estagiarios/{id}": {
+            "put": {
+                "tags": [
+                    "Estagiarios"
+                ],
+                "summary": "Atualiza as informações de uma estagiario",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Estagiarios"
+                ],
+                "summary": "Deleta o perfil de um estagiario",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "createUser": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "João"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "minhasenha123@"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "joaosilva@gmail.com"
+                },
+                "profile": {
+                    "type": "string",
+                    "example": "user"
+                }
+            },
+            "required": [
+                "name",
+                "password",
+                "email",
+                "profile"
+            ]
+        },
+        "login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "joaosilva@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "minhasenha123@"
+                }
+            },
+            "required": [
+                "email",
+                "password"
+            ]
+        },
+        "createEstagiario": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "João"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "joaosilva@gmail.com"
+                },
+                "company": {
+                    "type": "string",
+                    "example": "ABC Tech"
+                },
+                "techStack": {
+                    "type": "array",
+                    "example": [
+                        "JS",
+                        "Python"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bio": {
+                    "type": "string",
+                    "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                },
+                "birth": {
+                    "type": "string",
+                    "example": "2004-01-17"
+                },
+                "startDate": {
+                    "type": "string",
+                    "example": "2023-04-24"
+                },
+                "endDate": {
+                    "type": "string",
+                    "example": "2025-04-24"
+                },
+                "social": {
+                    "type": "object",
+                    "properties": {
+                        "linkedin": {
+                            "type": "string",
+                            "example": "https://www.linkedin.com/in/joaosilva"
+                        },
+                        "github": {
+                            "type": "string",
+                            "example": "https://github.com/joaosilva"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "email",
+                "techStack",
+                "bio",
+                "birth",
+                "startDate",
+                "endDate",
+                "social"
+            ]
+        }
+    }
+}

@@ -1,0 +1,57 @@
+*{
+  box-sizing: border-box; // Ajuda a manter o controle
+}
+
+.home-container {
+  display: flex; // responsivo
+  justify-content: center;
+  align-items: center;
+  padding: 20px; // espaçamento interno
+}
+
+.card {
+  background-color: #6799ca;
+  padding: 35px 35px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%; // responsividade na largura 
+  max-width: 300px; // largura maxima
+}
+
+.card h1 {
+  color: white;
+  font-size: 40px;
+  margin-bottom: 20px; 
+}
+
+.card p {
+  color: white;
+  font-size: 18px;
+}
+
+.button-group {
+  display: flex; // responsivo
+  flex-direction: column; 
+  gap: 10px; // espaçamento dos botoes
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color:black; // cor ao passar o mouse
+}
+
+.btn-primary {
+  background-color: rgb(122, 7, 7); // cor do botao primario
+  color: white;
+}
+
+.btn-secondary {
+  background-color: green; // cor do botao secundario
+  color: white;
+}

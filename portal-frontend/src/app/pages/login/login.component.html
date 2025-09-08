@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<form (ngSubmit)="onLogin()">
+    <label>EMAIL:</label><br>
+    <input type="email" name="email" [(ngModel)]="loginData.email" required><br><br>
+
+    <label>SENHA:</label><br>
+    <input type="password" name="password" [(ngModel)]="loginData.password" required><br><br>
+
+    <div class="link">
+        <button type="submit">Logar</button>
+    </div>
+</form>
+
+<p class="sem-conta">Não tem conta? <a (click)="irRegister()">Crie sua conta</a></p> 
+
+<p><a (click)="irInterns()">Ver Estagiários</a></p>

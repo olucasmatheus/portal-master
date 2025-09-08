@@ -1,0 +1,38 @@
+<div *ngIf="isAdmin()" class="admin-actions">
+  <button (click)="goToRegisterPage()">Cadastrar Novo Estagiário</button>
+</div>
+<h1>Estagiários que passaram por aqui!</h1>
+
+<div *ngIf="estagiarios.length > 0">
+
+  <div *ngFor="let item of estagiarios" class="intern-card">
+    <img src="assets/murilo.png" alt="Foto de {{ item.name }}">
+    <br>
+
+    <strong>{{ item.name }}</strong>
+    <em>{{ item.role }}</em>
+
+    <p><strong>Bio:</strong> {{ item.bio }}</p>
+    <p><strong>Período:</strong> {{ item.startDate | date: 'dd/MM/yyyy' }} - {{ item.endDate | date: 'dd/MM/yyyy'}}</p>
+    <p><strong>História:</strong> "{{ item.story }}"</p>
+    <p><strong>Tech Stack:</strong> {{ item.techStack }}</p>
+
+    <div class="social-links">
+      <a [href]="item.social.linkedin" target="_blank">LinkedIn</a> |
+      <a [href]="item.social.github" target="_blank">GitHub</a> |
+      <a [href]="item.social.instagram" target="_blank">Instagram</a>
+    </div>
+
+    <div *ngIf="isAdmin()" class="admin-actions-card">
+      <hr>
+      <button (click)="editStory(item)">Editar</button>
+      <button (click)="deleteStory(item)" class="delete-button">Deletar</button>
+    </div>
+
+  </div>
+</div>
+
+<br>
+<div class="link">
+  <button (click)="irHome()">Voltar Tela Inicial</button>
+</div>
